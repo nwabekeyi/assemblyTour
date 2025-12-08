@@ -7,6 +7,7 @@ import { PACKAGES } from '../data/packages';
 import { getSession, logout } from '../utils/auth';
 import mecca from '../assets/mecca.jpeg'
 import Slider from "react-slick";
+import heroImage from '../assets/pixday090819a-0.avif'
 
 
 // ---------------- Colors & Animations ----------------
@@ -65,7 +66,7 @@ const MobileMenuToggle = styled.div` display:none; cursor:pointer; @media(max-wi
 const Hero = styled.section`
   height: 100vh; /* Full viewport height */
   background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.65)),
-              url('../src/assets/pixday090819a-0.avif') center/cover no-repeat fixed;
+              url(${heroImage}) center/cover no-repeat fixed;
   display: flex;
   align-items: center;
   justify-content: center;
