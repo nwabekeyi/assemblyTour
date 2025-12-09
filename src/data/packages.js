@@ -1,29 +1,45 @@
+import hotel1 from '../assets/hotel1.webp'
+import hotel2 from '../assets/hotel2.jpg'
+import airport from '../assets/airport.jpeg'
+
+
 export const PACKAGES = [
     {
-    id: 'deluxe-umrah',
-    title: 'Deluxe Umrah Package',
-    subtitle: '5★ hotels, private transfers, all ziyarat',
-    priceNgn: 2000000,
-    durationDays: 10,
-    highlights: ['5-Star hotels', 'Private transport', 'Visa included', 'Certified guide'],
-    tags: ['Umrah', 'Deluxe']
+      id: 1,
+      title: "5-Star Luxury Umrah Package",
+      subtitle: "Makkah & Madinah Hotels",
+      priceNgn: 1850000,
+      image: hotel1,
+      highlights: [
+        "Hilton Convention Hotel (Makkah)",
+        "Pullman Zamzam (Madinah)",
+        "Full Transportation",
+        "Visa + Guidance"
+      ]
     },
     {
-    id: 'economy-umrah',
-    title: 'Economy Umrah',
-    subtitle: 'Comfortable stay for budget pilgrims',
-    priceNgn: 950000,
-    durationDays: 10,
-    highlights: ['4-Star hotels', 'Group transport', 'Visa included'],
-    tags: ['Umrah', 'Economy']
+      id: 2,
+      title: "4-Star Standard Package",
+      priceNgn: 1450000,
+      image: hotel2,
+      highlights: [
+        "Anwar Al Madinah Movenpick",
+        "300m from Haram",
+        "Breakfast Included",
+        "Transport + Visa"
+      ]
     },
     {
-    id: 'vip-hajj',
-    title: 'VIP Hajj 2026',
-    subtitle: 'VIP tents, private cars and personal assistant',
-    priceNgn: 75000000,
-    durationDays: 20,
-    highlights: ['VIP Mina tents', 'Private car', 'Personal assistant'],
-    tags: ['Hajj', 'VIP']
+      id: 3,
+      title: "Budget Umrah Package",
+      priceNgn: 980000,
+      image: airport,
+      highlights: [
+        "Dyar International Hotel",
+        "Close to Haram",
+        "Shared Transport",
+        "Visa Assistance"
+      ]
     }
-    ]
+  ];
+  

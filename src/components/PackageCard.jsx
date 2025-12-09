@@ -1,53 +1,37 @@
-import React from 'react';
 import styled from 'styled-components';
-import { Check } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Check } from 'lucide-react';
 
+
+// ---------------- Package Card ----------------
 const Card = styled(motion.div)`
   background: #ffffff;
-  border-radius: 24px;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.08), 0 8px 16px rgba(0,0,0,0.06);
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s, box-shadow 0.3s;
-
-  &:hover {
-    box-shadow: 0 30px 60px rgba(0,0,0,0.12), 0 12px 24px rgba(0,0,0,0.08);
-  }
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 `;
 
-const Img = styled.div`
+const Img = styled.img`
   height: 200px;
-  background: linear-gradient(135deg, #0d9488, #14b8a6);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 900;
-  font-size: 1.25rem;
-  text-align: center;
-  padding: 0 12px;
+  width: 100%;
+  object-fit: cover;
 `;
 
 const Body = styled.div`
-  padding: 24px 20px 28px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  padding: 20px;
 `;
 
 const Title = styled.h3`
   margin: 0;
   font-size: 1.1rem;
   font-weight: 700;
-  color: #0f172a;
 `;
 
 const Price = styled.div`
   color: #0d9488;
   font-weight: 800;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
+  margin: 10px 0;
 `;
 
 const List = styled.ul`
@@ -56,57 +40,52 @@ const List = styled.ul`
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 `;
 
 const ListItem = styled.li`
   display: flex;
+  gap: 8px;
   align-items: center;
-  gap: 10px;
   color: #475569;
   font-size: 0.95rem;
-
-  svg {
-    min-width: 18px;
-    min-height: 18px;
-    color: #0d9488;
-  }
 `;
 
 const Btn = styled.button`
   width: 100%;
-  padding: 14px;
+  padding: 12px;
   border-radius: 12px;
   border: none;
+  background: #0f172a;
+  color: white;
   font-weight: 800;
-  font-size: 1rem;
   cursor: pointer;
-  background: linear-gradient(90deg, #0d9488, #14b8a6);
-  color: #ffffff;
-  transition: all 0.25s ease;
-
+  transition: 0.2s;
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 24px rgba(20,184,166,0.3);
+    background: #1e293b;
   }
 `;
 
-export default function PackageCard({ p, onBook }) {
+function PackageCard({ p, onBook }) {
   return (
-    <Card whileHover={{ y: -6, scale: 1.02 }} transition={{ type: 'spring', stiffness: 280 }}>
-      <Img>{p.title}</Img>
+    <Card whileHover={{ scale: 1.02 }}>
+      <Img src={p.image} alt={p.title} />
       <Body>
-        <Title>{p.subtitle}</Title>
+        <Title>{p.title}</Title>
         <Price>₦{p.priceNgn.toLocaleString()}</Price>
+
         <List>
           {p.highlights.map((h, i) => (
             <ListItem key={i}>
-              <Check size={20} /> {h}
+              <Check size={18} /> {h}
             </ListItem>
           ))}
         </List>
-        <Btn onClick={() => onBook && onBook(p)}>Book / View</Btn>
+
+        <Btn onClick={() => onBook && onBook(p)}>Book Now</Btn>
       </Body>
     </Card>
   );
 }
+
+export default PackageCard;
