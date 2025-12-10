@@ -11,8 +11,8 @@ export const PACKAGES = [
       priceNgn: 1850000,
       image: hotel1,
       highlights: [
-        "Hilton Convention Hotel (Makkah)",
-        "Pullman Zamzam (Madinah)",
+        "Hilton Convention Hotel",
+        "Pullman Zamzam",
         "Full Transportation",
         "Visa + Guidance"
       ]
@@ -23,7 +23,7 @@ export const PACKAGES = [
       priceNgn: 1450000,
       image: hotel2,
       highlights: [
-        "Anwar Al Madinah Movenpick",
+        "Anwar Al Madinah",
         "300m from Haram",
         "Breakfast Included",
         "Transport + Visa"

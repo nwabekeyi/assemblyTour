@@ -18,7 +18,7 @@ const Img = styled.img`
 `;
 
 const Body = styled.div`
-  padding: 20px;
+  padding: 0 20px;
 `;
 
 const Title = styled.h3`
@@ -71,7 +71,6 @@ function PackageCard({ p, onBook }) {
     <Card whileHover={{ scale: 1.02 }}>
       <Img src={p.image} alt={p.title} />
       <Body>
-        <Title>{p.title}</Title>
         <Price>₦{p.priceNgn.toLocaleString()}</Price>
 
         <List>
