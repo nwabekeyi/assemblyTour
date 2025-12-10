@@ -437,10 +437,10 @@ export default function App() {
   const [user, setUser] = useState(getSession());
   const navRef = useRef(null);
 
-  const [from, setFrom] = useState('Lagos');
-  const [month, setMonth] = useState('Ramadan 2026');
-  const [duration, setDuration] = useState('10');
-  const [travellers, setTravellers] = useState('1 Adult');
+  const [from, setFrom] = useState('');
+  const [month, setMonth] = useState('');
+  const [duration, setDuration] = useState('');
+  const [travellers, setTravellers] = useState('');
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
 
@@ -451,16 +451,47 @@ export default function App() {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    const filtered = PACKAGES.filter(p => {
-      const matchesQuery = !query ||
-        p.title.toLowerCase().includes(query.toLowerCase()) ||
-        p.subtitle.toLowerCase().includes(query.toLowerCase()) ||
-        p.tags.some(t => t.toLowerCase().includes(query.toLowerCase()));
-      const matchesDuration = !duration || p.durationDays.toString().includes(duration);
-      return matchesQuery && matchesDuration;
+  
+    const filtered = PACKAGES.filter((p) => {
+      // 1. Text search — safe even if query is empty
+      const queryMatch =
+        !query || query.trim() === '' ||
+        p.title?.toLowerCase().includes(query.toLowerCase()) ||
+        p.subtitle?.toLowerCase().includes(query.toLowerCase()) ||
+        (Array.isArray(p.tags) && p.tags.some(tag => 
+          tag?.toLowerCase().includes(query.toLowerCase())
+        ));
+  
+      // 2. From city — only filter if user selected something
+      const fromMatch = !from || from === '' || from === 'Any City' || from === 'Lagos'
+        ? true
+        : p.departureCity?.toLowerCase() === from.toLowerCase();
+  
+      // 3. Month — safe check
+      const monthMatch = !month || month === '' || month === 'Any Month'
+        ? true
+        : p.month?.toLowerCase().includes(month.toLowerCase()) ||
+          (Array.isArray(p.availableMonths) && 
+            p.availableMonths.some(m => m.toLowerCase().includes(month.toLowerCase())));
+  
+      // 4. Duration — safe parsing
+      const durationMatch = !duration || duration === '' || duration === 'Any Duration'
+        ? true
+        : p.durationDays?.toString() === duration;
+  
+      // Final result
+      return queryMatch && fromMatch && monthMatch && durationMatch;
     });
+  
     setResults(filtered);
-    document.getElementById('results')?.scrollIntoView({ behavior: 'smooth' });
+  
+    // Smooth scroll to results
+    setTimeout(() => {
+      const element = document.getElementById('results');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }, 100);
   };
 
   useEffect(() => setUser(getSession()), []);
