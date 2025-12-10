@@ -324,7 +324,25 @@ const StyledSelect = styled.select`
   border-radius: 16px;
   font-size: 1rem;
   background: white;
+  color: #000000 !important;           /* Force black text */
   box-sizing: border-box;
+  appearance: none;                    /* Remove default arrow */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 16px;
+
+  & option {
+    color: #000000 !important;         /* All options black */
+    background: white;
+    font-size: 1rem;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 6px rgba(13,148,136,0.15);
+    border-color: ${colors.primary};
+  }
 
   @media (max-width: 768px) {
     padding: 14px;
